@@ -6,7 +6,7 @@ import Demo from './components/Demo'
 const App = () => {
   return (
     <main>
-      <div className='main'>
+      <div className='main -z-10'>
         <div className='gradient '/>
       </div>
 
