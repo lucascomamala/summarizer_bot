@@ -1,19 +1,47 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 
-import { copy, linkIcon, loader, tick } from "../assets"
-// import { useLazyGetSummaryQuery } from "../services/article"
+import { copy, linkIcon, loader, tick } from '../assets'
+import { useLazyGetSummaryQuery } from '../services/article'
 
 const Demo = () => {
   const [article, setArticle] = useState({
-    url: "",
-    summary: "",
+    url: '',
+    summary: '',
   })
   const [allArticles, setAllArticles] = useState([])
-  const [copied, setCopied] = useState("")
+  const [copied, setCopied] = useState('')
+
+  // RTK lazy query
+  const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
+
+  // Load data from localStorage on mount
+  useEffect(() => {
+    const articlesFromLocalStorage = JSON.parse(
+      localStorage.getItem('articles')
+    );
+
+    if (articlesFromLocalStorage) {
+      setAllArticles(articlesFromLocalStorage);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
-    alert("submit")
+    e.preventDefault()
+
+    const { data } = await getSummary({ articleUrl: article.url })
+
+    if (data?.summary) {
+      const newArticle = { ...article, summary: data.summary }
+      const updatedArticles = [...allArticles, newArticle]
+
+      // update state and local storage
+      setArticle(newArticle)
+      setAllArticles(updatedArticles)
+      localStorage.setItem('articles', JSON.stringify(updatedArticles))
+    }
   }
+
+  // copy the url and toggle the icon for user feedback
 
   return (
     <section className='mt-16 w-full max-w-xl'>
@@ -33,10 +61,10 @@ const Demo = () => {
             type='url'
             placeholder='Paste the article link'
             value={article.url}
-            onChange={(e) => setArticle({ ...article, url: e.target.value})}
-            onKeyDown={() => {}}
+            onChange={(e) => setArticle({ ...article, url: e.target.value })}
+            onKeyDown={() => { }}
             required
-            className='url_input peer' // When you need to style an element based on the state of a sibling element, mark the sibling with the peer class, and use peer-* modifiers to style the target element
+            className='url_input peer'
           />
           <button
             type='submit'
@@ -47,9 +75,6 @@ const Demo = () => {
         </form>
 
         {/* Browse History */}
-        <div className='flex flex-col gap-1 max-h-60 overflow-y-auto'>
-
-        </div>
       </div>
     </section>
   )
