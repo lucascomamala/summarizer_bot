@@ -111,6 +111,8 @@ const Demo = () => {
             <br />
             <span className='font-satoshi font-normal text-gray-700'>
               {error?.data?.error}
+              {console.log(error)}
+              {console.log(error?.data?.error)}
             </span>
           </p>
         ) : (
