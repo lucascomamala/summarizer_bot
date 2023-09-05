@@ -1,8 +1,37 @@
-# React + Vite
+## 🚗 Live Build
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[summarizer_bot](https://share-prompts-gules.vercel.app/)
 
-Currently, two official plugins are available:
+## 🛠️ Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Use the package manager [npm](https://www.npmjs.com/) to install.
+
+```bash
+npm install
+```
+
+## 🖥️ Usage
+
+To run the project locally:
+
+```bash
+npm run dev
+```
+
+To build the project:
+
+```bash
+npm run build
+```
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+If you like this project give this repo a star ⭐ and reach out on our social media, and we will be happy to know about it! 😃
+
+## 📝 License
+
+This project is [MIT](./LICENSE) licensed.
