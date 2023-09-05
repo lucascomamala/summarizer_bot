@@ -1,4 +1,4 @@
-## 🚗 Live Build
+## 🤖 Live Build
 
 [summarizer_bot](https://share-prompts-gules.vercel.app/)
 
